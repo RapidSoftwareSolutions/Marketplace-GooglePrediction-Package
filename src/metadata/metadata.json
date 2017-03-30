@@ -1,0 +1,452 @@
+{
+  "package": "GooglePrediction",
+  "tagline": "GooglePrediction API",
+  "description": "Build and train cloud-based machine learning models.",
+  "image": "http:\/\/logo.clearbit.com\/cloud.google.com",
+  "repo": "https:\/\/github.com\/RapidSoftwareSolutions\/Marketplace-GooglePrediction-Package",
+  "keywords": [ "AI", "API", "Google", "learning", "machine", "model", "modeling", "prediction"
+  ],
+  "accounts": {
+    "domain": "cloud.google.com",
+    "credentials": [
+      "apiKey",
+      "apiSecret"
+    ]
+  },
+  "blocks": [
+    {
+      "name": "getAccessToken",
+      "description": "Get access token",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "Api key obtained from Google",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "Api secret obtained from Google",
+          "required": true
+        },
+        {
+          "name": "redirectUri",
+          "type": "String",
+          "info": "Your redirect Uri",
+          "required": true
+        },
+        {
+          "name": "code",
+          "type": "String",
+          "info": "Code provided by client",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "revokeAccessToken",
+      "description": "revoke access token",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "User access token",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "refreshAccessToken",
+      "description": "Refresh access token",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "Api key obtained from Google",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "Api secret obtained from Google",
+          "required": true
+        },
+        {
+          "name": "refreshToken",
+          "type": "String",
+          "info": "refresh token provided in getAccessToken block",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "predictWithHostedModel",
+      "description": "Submit input and request an output against a hosted model.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Api key obtained from Google",
+          "required": true
+        },
+        {
+          "name": "projectId",
+          "type": "String",
+          "info": "Id of the project",
+          "required": true
+        },
+        {
+          "name": "hostedModelName",
+          "type": "String",
+          "info": "Name of the hosted model",
+          "required": true
+        },
+        {
+          "name": "csvInstance",
+          "type": "Array",
+          "info": "A list of input features, these can be strings or doubles.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "trainModel",
+      "description": "Train a Prediction API model.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Api key obtained from Google",
+          "required": true
+        },
+        {
+          "name": "projectId",
+          "type": "String",
+          "info": "Id of the project",
+          "required": true
+        },
+        {
+          "name": "modelId",
+          "type": "String",
+          "info": "Id of the model. If you train a model that already exists in a project, the model will be overwritten.",
+          "required": true
+        },
+        {
+          "name": "sourceModel",
+          "type": "String",
+          "info": "The Id of the model to be copied over.",
+          "required": false
+        },
+        {
+          "name": "storageDataLocation",
+          "type": "String",
+          "info": "Google storage location of the training data file.",
+          "required": false
+        },
+        {
+          "name": "storagePMMLLocation",
+          "type": "String",
+          "info": "Google storage location of the preprocessing pmml file.",
+          "required": false
+        },
+        {
+          "name": "modelType",
+          "type": "String",
+          "info": "Type of predictive model (CLASSIFICATION or REGRESSION)",
+          "required": false
+        },
+        {
+          "name": "trainingInstancesOutput",
+          "type": "String",
+          "info": "The generic output value - could be regression or class label.",
+          "required": false
+        },
+        {
+          "name": "trainingInstancesCsvInstance",
+          "type": "Array",
+          "info": "The input features for this instance.",
+          "required": false
+        },
+        {
+          "name": "utility",
+          "type": "Array",
+          "info": "A class weighting function, which allows the importance weights for class labels to be specified (Categorical models only).",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getModelAnalysisResult",
+      "description": "Get analysis of the model and the data the model was trained on.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Api key obtained from Google",
+          "required": true
+        },
+        {
+          "name": "projectId",
+          "type": "String",
+          "info": "Id of the project",
+          "required": true
+        },
+        {
+          "name": "modelId",
+          "type": "String",
+          "info": "Id of the model.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getModels",
+      "description": "List available models.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Api key obtained from Google",
+          "required": true
+        },
+        {
+          "name": "projectId",
+          "type": "String",
+          "info": "Id of the project",
+          "required": true
+        },
+        {
+          "name": "maxResults",
+          "type": "Number",
+          "info": "Maximum number of results to return.",
+          "required": false
+        },
+        {
+          "name": "pageToken",
+          "type": "String",
+          "info": "Pagination token.",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "checkModelTrainingStatus",
+      "description": "Check training status of your model.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Api key obtained from Google",
+          "required": true
+        },
+        {
+          "name": "projectId",
+          "type": "String",
+          "info": "Id of the project",
+          "required": true
+        },
+        {
+          "name": "modelId",
+          "type": "String",
+          "info": "Id of the model.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getTrainedModelsPrediction",
+      "description": "Submit model id and request a prediction.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Api key obtained from Google",
+          "required": true
+        },
+        {
+          "name": "projectId",
+          "type": "String",
+          "info": "Id of the project",
+          "required": true
+        },
+        {
+          "name": "modelId",
+          "type": "String",
+          "info": "Id of the model.",
+          "required": true
+        },
+        {
+          "name": "csvInstance",
+          "type": "Array",
+          "info": "A list of input features, these can be strings or doubles.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "addDataToModel",
+      "description": "Add new data to a trained model.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Api key obtained from Google",
+          "required": true
+        },
+        {
+          "name": "projectId",
+          "type": "String",
+          "info": "Id of the project",
+          "required": true
+        },
+        {
+          "name": "modelId",
+          "type": "String",
+          "info": "Id of the model.",
+          "required": true
+        },
+        {
+          "name": "csvInstance",
+          "type": "Array",
+          "info": "A list of input features, these can be strings or doubles.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "deleteModel",
+      "description": "Delete a trained model.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Api key obtained from Google",
+          "required": true
+        },
+        {
+          "name": "projectId",
+          "type": "String",
+          "info": "Id of the project",
+          "required": true
+        },
+        {
+          "name": "modelId",
+          "type": "String",
+          "info": "Id of the model.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    }
+  ]
+}
