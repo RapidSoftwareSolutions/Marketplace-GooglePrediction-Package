@@ -14,13 +14,27 @@ $app->post('/api/GooglePrediction/trainModel', function ($request, $response, $a
     $query_str = $settings['api_url'] . 'projects/' . $post_data['args']['projectId'] . '/trainedmodels';
     $body = array();
     $body['id'] = $post_data['args']['modelId'];
-    $body['sourceModel'] = $post_data['args']['sourceModel'];
-    $body['storageDataLocation'] = $post_data['args']['storageDataLocation'];
-    $body['storagePMMLLocation'] = $post_data['args']['storagePMMLLocation'];
-    $body['modelType'] = $post_data['args']['modelType'];
-    $body['trainingInstances']['output'] = $post_data['args']['trainingInstancesOutput'];
-    $body['trainingInstances']['csvInstance'] = $post_data['args']['trainingInstancesCsvInstance'];
-    $body['utility'] = $post_data['args']['utility'];
+    if (isset($post_data['args']['sourceModel']) && strlen($post_data['args']['sourceModel']) > 0) {
+        $body['sourceModel'] = $post_data['args']['sourceModel'];
+    }
+    if (isset($post_data['args']['storageDataLocation']) && strlen($post_data['args']['storageDataLocation']) > 0) {
+        $body['storageDataLocation'] = $post_data['args']['storageDataLocation'];
+    }
+    if (isset($post_data['args']['storagePMMLLocation']) && strlen($post_data['args']['storagePMMLLocation']) > 0) {
+        $body['storagePMMLLocation'] = $post_data['args']['storagePMMLLocation'];
+    }
+    if (isset($post_data['args']['modelType']) && strlen($post_data['args']['modelType']) > 0) {
+        $body['modelType'] = $post_data['args']['modelType'];
+    }
+    if (isset($post_data['args']['trainingInstancesOutput']) && strlen($post_data['args']['trainingInstancesOutput']) > 0) {
+        $body['trainingInstances']['output'] = $post_data['args']['trainingInstancesOutput'];
+    }
+    if (isset($post_data['args']['trainingInstancesCsvInstance']) && strlen($post_data['args']['trainingInstancesCsvInstance']) > 0) {
+        $body['trainingInstances']['csvInstance'] = $post_data['args']['trainingInstancesCsvInstance'];
+    }
+    if (isset($post_data['args']['utility']) && strlen($post_data['args']['utility']) > 0) {
+        $body['utility'] = $post_data['args']['utility'];
+    }
 
     //requesting remote API
     $client = new GuzzleHttp\Client();
