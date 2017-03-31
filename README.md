@@ -110,6 +110,7 @@ Add new data to a trained model.
 | projectId  | String| Id of the project
 | modelId    | String| Id of the model.
 | csvInstance| Array | A list of input features, these can be strings or doubles.
+| output     | String| The generic output value - could be regression or class label.
 
 ## GooglePrediction.deleteModel
 Delete a trained model.

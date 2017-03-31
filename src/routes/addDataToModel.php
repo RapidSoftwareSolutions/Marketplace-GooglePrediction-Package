@@ -4,7 +4,7 @@ $app->post('/api/GooglePrediction/addDataToModel', function ($request, $response
 
     //checking properly formed json
     $checkRequest = $this->validation;
-    $validateRes = $checkRequest->validate($request, ['accessToken', 'modelId', 'projectId', 'csvInstance']);
+    $validateRes = $checkRequest->validate($request, ['accessToken', 'modelId', 'projectId', 'csvInstance', 'output']);
     if (!empty($validateRes) && isset($validateRes['callback']) && $validateRes['callback'] == 'error') {
         return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($validateRes);
     } else {
@@ -13,11 +13,12 @@ $app->post('/api/GooglePrediction/addDataToModel', function ($request, $response
     //forming request to vendor API
     $query_str = $settings['api_url'] . 'projects/' . $post_data['args']['projectId'] . '/trainedmodels/' . $post_data['args']['modelId'] . '/predict';
     $body = array();
-    $body['input']['csvInstance'] = $post_data['args']['csvInstance'];
+    $body['csvInstance'] = $post_data['args']['csvInstance'];
+    $body['output'] = $post_data['args']['output'];
 
     //requesting remote API
     $client = new GuzzleHttp\Client();
-
+   
     try {
 
         $resp = $client->request('PUT', $query_str, [

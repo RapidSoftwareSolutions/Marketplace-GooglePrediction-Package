@@ -18,7 +18,6 @@ $app->post('/api/GooglePrediction/predictWithHostedModel', function ($request, $
     //requesting remote API
     $client = new GuzzleHttp\Client();
 
-
     try {
 
         $resp = $client->request('POST', $query_str, [
