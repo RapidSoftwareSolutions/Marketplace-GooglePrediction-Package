@@ -134,9 +134,14 @@
         },
         {
           "name": "csvInstance",
-          "type": "Array",
+          "type": "List",
           "info": "A list of input features, these can be strings or doubles.",
-          "required": true
+          "required": true,
+          "structure": {
+            "name": "input",
+            "type": "String",
+            "info": "Single input"
+          }
         }
       ],
       "callbacks": [
@@ -192,7 +197,8 @@
         },
         {
           "name": "modelType",
-          "type": "String",
+          "type": "Select",
+          "options": ["CLASSIFICATION", "REGRESSION"],
           "info": "Type of predictive model (CLASSIFICATION or REGRESSION)",
           "required": false
         },
@@ -204,9 +210,14 @@
         },
         {
           "name": "trainingInstancesCsvInstance",
-          "type": "Array",
+          "type": "List",
           "info": "The input features for this instance.",
-          "required": false
+          "required": false,
+          "structure": {
+            "name": "input",
+            "type": "String",
+            "info": "Single input"
+          }
         },
         {
           "name": "utility",
@@ -358,9 +369,14 @@
         },
         {
           "name": "csvInstance",
-          "type": "Array",
+          "type": "List",
           "info": "A list of input features, these can be strings or doubles.",
-          "required": true
+          "required": true,
+          "structure": {
+            "name": "input",
+            "type": "String",
+            "info": "Single input"
+          }
         }
       ],
       "callbacks": [
@@ -398,9 +414,14 @@
         },
         {
           "name": "csvInstance",
-          "type": "Array",
+          "type": "List",
           "info": "A list of input features, these can be strings or doubles.",
-          "required": true
+          "required": true,
+          "structure": {
+            "name": "input",
+            "type": "String",
+            "info": "Single input"
+          }
         },
         {
           "name": "output",
