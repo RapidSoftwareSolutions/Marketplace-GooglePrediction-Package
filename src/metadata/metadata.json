@@ -221,9 +221,14 @@
         },
         {
           "name": "utility",
-          "type": "Array",
+          "type": "List",
           "info": "A class weighting function, which allows the importance weights for class labels to be specified (Categorical models only).",
-          "required": false
+          "required": false,
+          "structure": {
+            "name": "utility",
+            "type": "String",
+            "info": "Single utility"
+          }
         }
       ],
       "callbacks": [

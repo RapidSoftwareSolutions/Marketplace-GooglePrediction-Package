@@ -72,7 +72,7 @@ Train a Prediction API model.
 | modelType                   | Select| Type of predictive model (CLASSIFICATION or REGRESSION)
 | trainingInstancesOutput     | String| The generic output value - could be regression or class label.
 | trainingInstancesCsvInstance| List  | The input features for this instance.
-| utility                     | Array | A class weighting function, which allows the importance weights for class labels to be specified (Categorical models only).
+| utility                     | List | A class weighting function, which allows the importance weights for class labels to be specified (Categorical models only).
 
 ## GooglePrediction.getModelAnalysisResult
 Get analysis of the model and the data the model was trained on.
