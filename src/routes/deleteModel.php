@@ -29,7 +29,7 @@ $app->post('/api/GooglePrediction/deleteModel', function ($request, $response, $
         $all_data[] = $rawBody;
         if ($response->getStatusCode() == '200') {
             $result['callback'] = 'success';
-            $result['contextWrites']['to'] = 'success';
+            $result['contextWrites']['to'] = ['result'=>'deleted'];
         } else {
             $result['callback'] = 'error';
             $result['contextWrites']['to']['status_code'] = 'API_ERROR';
